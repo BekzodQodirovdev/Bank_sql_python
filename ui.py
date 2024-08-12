@@ -128,7 +128,7 @@ class AdminPage(QWidget):
         self.setLayout(self.v_box)
 
     def List_page(self):
-        self.close()
+        # self.close()
         self.lst = AdminSearch()
         self.lst.show()
 
@@ -185,11 +185,7 @@ class AdminSearch(QWidget):
             for j, value in enumerate(row):
                 self.table.setItem(i, j, QTableWidgetItem(str(value)))
 
-            self.v_box = QVBoxLayout()
             action_layout = QHBoxLayout()
-
-            self.back_btn = Button('🔙')
-            self.back_btn.clicked.connect(self.back_page)
 
             update_btn = QPushButton('🖊️')
             update_btn.clicked.connect(lambda _, row=i, id_=row[0]: self.update_data(row, id_))
@@ -201,7 +197,6 @@ class AdminSearch(QWidget):
 
             action_widget = QWidget()
             action_widget.setLayout(action_layout)
-            self.v_box.addLayout()
 
             self.table.setCellWidget(i, 7, action_widget)
 
