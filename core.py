@@ -138,23 +138,23 @@ class DATA:
         self.cursor = self.conn.cursor()
 
 
-    def search_data(self,query_data):
-        self.conc()
-        try:
-            with self.conn.cursor() as cursor:
-                query = f'''SELECT * FROM users WHERE username LIKE '%{query_data['query']}%' OR email LIKE '%{query_data['query']}%'''
-                cursor.execute(query)
-            users = cursor.fetchall()
-            self.conn.close()
-            print(users)
-            return users
-        except Error as err:
-            return str(err)
+    # def search_data(self,query_data):
+    #     self.conc()
+    #     try:
+    #         with self.conn.cursor() as cursor:
+    #             query = f'''SELECT * FROM users WHERE username LIKE '%{query_data['query']}%' OR email LIKE '%{query_data['query']}%'''
+    #             cursor.execute(query)
+    #         users = cursor.fetchall()
+    #         self.conn.close()
+    #         print(users)
+    #         return users
+    #     except Error as err:
+    #         return str(err)
 
-    # def search_data(self, data):
-    #     query = f"SELECT * FROM users WHERE username LIKE '%{data['query']}%' OR email LIKE '%{data['query']}%'"
-    #     self.cursor.execute(query)
-    #     return self.cursor.fetchall()
+    def search_data(self, data):
+        query = f"SELECT * FROM users WHERE username LIKE '%{data['query']}%' OR email LIKE '%{data['query']}%'"
+        self.cursor.execute(query)
+        return self.cursor.fetchall()
 
     def update_data(self, id_, new_values):
         query = """
